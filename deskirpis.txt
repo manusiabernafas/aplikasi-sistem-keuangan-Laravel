@@ -1,0 +1,50 @@
+Sistem Pencatatan Keuangan profesional berbasis Laravel:
+pencatatan pemasukan, pengeluaran, dan transfer dengan ledger double-entry di balik layar, manajemen budget & target keuangan, hutang-piutang dengan cicilan, rekonsiliasi rekening bank, hingga laporan keuangan lengkap dengan export dan insight otomatis semua dalam satu platform yang rapi, aman, dan mudah digunakan.
+
+Sistem ini dirancang untuk individu, freelancer, maupun bisnis skala kecil-menengah yang ingin meninggalkan pencatatan keuangan manual di spreadsheet, beralih ke platform digital yang terstruktur, akurat secara akuntansi, dan bisa diakses oleh seluruh tim (admin, staff input, hingga pemilik) sesuai hak akses masing-masing.
+Cara kerja
+Setiap transaksi pemasukan atau pengeluaran yang dicatat pengguna otomatis diterjemahkan sistem menjadi entri ledger berpasangan (debit-kredit) tanpa pengguna perlu memahami akuntansi cukup pilih akun, kategori, dan nominal, saldo akun ter-update otomatis dan tervalidasi (transaksi ditolak jika saldo tidak mencukupi). Transfer antar akun dicatat terpisah dari income/expense agar laporan tetap akurat.
+
+Tagihan berulang seperti gaji, listrik, atau internet bisa dijadwalkan sebagai transaksi rekuren yang berjalan otomatis via scheduler, lengkap dengan mekanisme anti-duplikat. Budget bulanan/tahunan dipantau progress-nya secara real-time terhadap transaksi aktual, dengan notifikasi otomatis saat mendekati atau melampaui batas. Hutang dan piutang dicatat dengan dukungan pembayaran cicilan yang setiap pelunasannya otomatis membentuk entri ledger baru.
+
+Di akhir periode, pengguna dapat melakukan rekonsiliasi mencocokkan saldo sistem dengan mutasi rekening bank satu per satu lalu membuka menu Laporan untuk melihat Cash Flow, Profit & Loss, Net Worth, hingga ringkasan bulanan, dan mengekspornya ke Excel, CSV, atau PDF. Sistem juga memberikan Financial Insight otomatis (tanpa AI) berdasarkan pola pengeluaran nyata pengguna. Seluruh aktivitas tercatat rapi di Audit Log, dan admin dapat mengatur pengguna beserta izin aksesnya lewat matriks permission yang fleksibel.
+Fitur
+Pencatatan Pemasukan, Pengeluaran, dan Transfer dengan ledger double-entry otomatis
+Validasi saldo otomatis (strict balance) — transaksi ditolak jika saldo tidak cukup
+Manajemen Account: Kas, Bank, E-Wallet dengan saldo real-time
+Kategori transaksi berjenjang (parent-child) beserta Tag bebas
+Budget bulanan/tahunan dengan progress tracking & alert otomatis
+Transaksi berulang (recurring) terjadwal dengan proteksi anti-duplikat
+Financial Goals dengan progress kontribusi
+Manajemen Hutang & Piutang dengan pembayaran cicilan (partial payment)
+Rekonsiliasi saldo sistem vs mutasi rekening bank
+Laporan Cash Flow, Income, Expense, Profit & Loss, Net Worth, Financial Summary
+Export laporan ke Excel, CSV, dan PDF, serta cetak langsung
+Financial Insight otomatis berbasis data (tanpa AI/API eksternal)
+Notifikasi budget, jatuh tempo hutang/piutang, dan transaksi berulang
+Manajemen pengguna, peran, dan matriks izin akses (RBAC granular)
+Audit log seluruh aktivitas sistem
+Backup database sekali klik
+Panduan instalasi
+Install dependency PHP dan JavaScript
+cd keuang
+composer install
+npm install
+Salin file environment dan generate application key
+cp .env.example .env
+php artisan key:generate
+Edit .env, isi DB_DATABASE, DB_USERNAME, DB_PASSWORD sesuai server MySQL Anda. 3. Buat database MySQL
+
+CREATE DATABASE keuang_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+Jalankan migrasi & seeder (membuat semua tabel + data awal: role, izin akses, akun & kategori default, dan akun Super Admin)
+php artisan migrate --seed
+php artisan storage:link
+Compile asset frontend
+npm run build
+Jalankan Server
+php artisan serve
+Akses aplikasi di browser
+http://localhost:8000
+Login menggunakan akun Super Admin Email : superadmin@keuang.local Password : (digenerate otomatis & dicetak sekali di terminal saat proses seeding)
+
+Catatan: aplikasi ini memakai MySQL sebagai database, sehingga wajib menjalankan langkah migrasi & seeder di atas sebelum bisa digunakan. Password Super Admin dibuat acak demi keamanan pastikan disimpan saat pertama kali muncul di terminal, lalu segera ganti lewat menu Profil setelah login pertama.

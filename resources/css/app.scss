@@ -1,0 +1,149 @@
+// Keuang — Bootstrap 5 custom build
+// Financial-app palette: calm indigo primary, clear income/expense/transfer semantics.
+
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+$primary:   #4338CA; // indigo — primary actions/brand
+$success:   #16A34A; // income
+$danger:    #DC2626; // expense
+$warning:   #D97706; // budget alerts
+$info:      #0891B2; // transfer
+$secondary: #64748B;
+$light:     #F8FAFC;
+$dark:      #0F172A;
+
+$body-bg:    #F1F5F9;
+$body-color: #1E293B;
+
+$border-radius:        .625rem;
+$border-radius-sm:     .5rem;
+$border-radius-lg:     .875rem;
+$border-color:         #E2E8F0;
+
+$card-border-width:    0;
+$card-box-shadow:      0 1px 2px rgba(15, 23, 42, .06), 0 1px 3px rgba(15, 23, 42, .08);
+
+$font-size-base: .9375rem;
+$headings-font-weight: 600;
+
+@import "bootstrap/scss/bootstrap";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+body {
+    -webkit-font-smoothing: antialiased;
+}
+
+// Sidebar
+.app-shell {
+    display: flex;
+    min-height: 100vh;
+}
+
+.app-sidebar {
+    width: 264px;
+    flex-shrink: 0;
+    background: #FFFFFF;
+    border-right: 1px solid $border-color;
+    transition: margin-left .2s ease;
+}
+
+.app-sidebar .nav-section-title {
+    font-size: .6875rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: $secondary;
+    padding: .75rem 1rem .25rem;
+}
+
+.app-sidebar .nav-link {
+    color: #334155;
+    border-radius: $border-radius-sm;
+    padding: .5rem .75rem;
+    font-size: .875rem;
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+}
+
+.app-sidebar .nav-link.active {
+    background: rgba(67, 56, 202, .08);
+    color: $primary;
+    font-weight: 600;
+}
+
+.app-sidebar .nav-link:hover:not(.active) {
+    background: $light;
+}
+
+.app-main {
+    flex: 1;
+    min-width: 0;
+}
+
+.app-topbar {
+    background: #FFFFFF;
+    border-bottom: 1px solid $border-color;
+}
+
+// Cards / stat widgets
+.stat-card {
+    border-radius: $border-radius-lg;
+    box-shadow: $card-box-shadow;
+}
+
+.stat-card .stat-icon {
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: $border-radius;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+// Empty state
+.empty-state {
+    padding: 3.5rem 1.5rem;
+    text-align: center;
+    color: $secondary;
+}
+
+.empty-state .empty-state-icon {
+    font-size: 2.5rem;
+    color: #CBD5E1;
+}
+
+@media (max-width: 991.98px) {
+    .app-sidebar {
+        position: fixed;
+        inset: 0 auto 0 0;
+        z-index: 1045;
+        margin-left: -264px;
+    }
+
+    .app-sidebar.show {
+        margin-left: 0;
+        box-shadow: 0 0 0 100vmax rgba(15, 23, 42, .35);
+    }
+}
+
+@media print {
+    .app-sidebar, .app-topbar, .no-print {
+        display: none !important;
+    }
+
+    .app-main {
+        width: 100% !important;
+    }
+
+    .app-shell, main {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .card {
+        box-shadow: none !important;
+        border: 1px solid #E2E8F0 !important;
+    }
+}
